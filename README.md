@@ -1,47 +1,59 @@
-# Skill Demand Analyzer
+# Workforce Gap Analyzer
 
-A web-based platform that analyzes job market trends and identifies in-demand skills across different regions. The system helps users understand current industry requirements and plan their learning path accordingly.
+A web-based system that identifies workforce shortages across different regions by analyzing job demand and availability. The platform helps users discover high-opportunity professions based on local workforce gaps.
 
 ---
 
 ## Overview
 
-Skill Demand Analyzer enables users to explore job demand based on location and skills. It highlights trending roles, required competencies, and skill gaps, helping users make informed career decisions.
+Workforce Gap Analyzer focuses on detecting areas where specific jobs are lacking. By comparing demand for services with available workforce data, the system highlights professions that are in shortage within a region.
+
+This enables users to identify opportunities and make informed career or business decisions.
 
 ---
 
 ## Features
 
-* Search jobs by location and/or skill
-* Identify in-demand skills in specific regions
-* View trending job roles
-* Analyze skill gaps for selected roles
+* Search by location
+* Identify job shortages in a region
+* View high-demand professions
+* Opportunity level classification (High / Medium / Low)
 * Simple and intuitive interface
 
 ---
 
 ## How It Works
 
-1. User enters a location or skill (e.g., "Hyderabad" or "Python")
-2. The system analyzes job data
-3. Displays:
+1. User enters a location
+2. The system analyzes job demand and workforce availability
+3. Outputs:
 
-   * Popular job roles
-   * Required skills
-   * Missing skills (gap analysis)
+   * Jobs with shortages
+   * Opportunity levels
+   * Suggested high-demand professions
 
 ---
 
 ## Example
 
 Input:
-Hyderabad + Python
+Hyderabad
 
 Output:
 
-* Top roles: Data Analyst, Backend Developer
-* Required skills: SQL, Data Visualization, APIs
-* Suggested skills to learn: Power BI, Statistics
+* High Demand:
+
+  * Electricians
+  * Plumbers
+  * Gardeners
+
+* Medium Demand:
+
+  * Delivery workers
+
+* Low Demand:
+
+  * Software engineers
 
 ---
 
@@ -49,17 +61,17 @@ Output:
 
 * Frontend: HTML, CSS, JavaScript
 * Backend (planned): Node.js / Python
-* Data Source (planned): Job APIs / datasets
+* Data Source (planned): Public datasets / APIs
 
 ---
 
 ## Future Enhancements
 
 * Real-time job data integration
-* Personalized recommendations
-* Skill learning roadmap generation
-* Visualization dashboards
-* Resume-based analysis
+* Map-based visualization
+* Predictive demand analysis
+* User-specific recommendations
+* Data-driven dashboards
 
 ---
 
@@ -67,17 +79,17 @@ Output:
 
 This project can be extended into research focusing on:
 
-* Job market trend analysis
-* Skill demand prediction
-* Recommendation systems for career planning
+* Labor market demand-supply analysis
+* Workforce shortage prediction models
+* Regional employment optimization
 
 ---
 
 ## Installation
 
-```bash
-git clone https://github.com/your-username/skill-demand-analyzer.git
-cd skill-demand-analyzer
+```bash id="2hcrk6"
+git clone https://github.com/your-username/workforce-gap-analyzer.git
+cd workforce-gap-analyzer
 ```
 
 Open `index.html` in your browser.
