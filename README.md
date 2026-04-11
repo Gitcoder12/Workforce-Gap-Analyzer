@@ -87,12 +87,30 @@ This project can be extended into research focusing on:
 
 ## Installation
 
-```bash id="2hcrk6"
-git clone https://github.com/your-username/workforce-gap-analyzer.git
-cd workforce-gap-analyzer
+```bash
+git clone https://github.com/Gitcoder12/Workforce-Gap-Analyzer.git
+cd Workforce-Gap-Analyzer
 ```
 
-Open `index.html` in your browser.
+Install the required Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the Flask server:
+
+```bash
+python app.py
+```
+
+Then open your browser and go to:
+
+```
+http://127.0.0.1:5000
+```
+
+> **Note:** Do **not** open `index.html` directly in your browser. The app requires the Flask server to be running because all job data and the Resume AI feature are served through Python API endpoints.
 
 ---
 
