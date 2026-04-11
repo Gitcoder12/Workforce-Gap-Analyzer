@@ -308,6 +308,7 @@ function renderOfficers(officers) {
 // ── RESUME UPLOAD ─────────────────────────────────────────────
 const uploadZone = document.getElementById('uploadZone');
 const resumeFile = document.getElementById('resumeFile');
+let droppedFile = null;  // holds file from drag-and-drop
 
 // Drag & drop
 ['dragenter','dragover'].forEach(e => {
@@ -318,11 +319,11 @@ const resumeFile = document.getElementById('resumeFile');
 });
 uploadZone.addEventListener('drop', ev => {
   const file = ev.dataTransfer.files[0];
-  if (file) { resumeFile.files = ev.dataTransfer.files; showFileName(file.name); }
+  if (file) { droppedFile = file; showFileName(file.name); }
 });
 
 resumeFile.addEventListener('change', () => {
-  if (resumeFile.files[0]) showFileName(resumeFile.files[0].name);
+  if (resumeFile.files[0]) { droppedFile = null; showFileName(resumeFile.files[0].name); }
 });
 
 function showFileName(name) {
@@ -330,7 +331,7 @@ function showFileName(name) {
 }
 
 function analyzeResume() {
-  const file = resumeFile.files[0];
+  const file = droppedFile || resumeFile.files[0];
   const city = document.getElementById('resumeCity').value;
 
   if (!file) { alert('Please upload your resume first'); return; }

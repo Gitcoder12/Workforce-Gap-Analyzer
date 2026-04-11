@@ -364,14 +364,13 @@ OFFICERS_DATA = {
     ],
 }
 
+_SKILL_PATTERN = re.compile(
+    r'\b(' + '|'.join(map(re.escape, KNOWN_SKILLS)) + r')\b',
+    re.IGNORECASE,
+)
+
 def extract_skills_from_text(text):
-    text_lower = text.lower()
-    found = []
-    for skill in KNOWN_SKILLS:
-        pattern = r'\b' + re.escape(skill) + r'\b'
-        if re.search(pattern, text_lower):
-            found.append(skill)
-    return list(set(found))
+    return list({m.lower() for m in _SKILL_PATTERN.findall(text)})
 
 def extract_years_experience(text):
     patterns = [
@@ -471,20 +470,21 @@ def upload_resume():
         file_bytes = file.read()
         if filename.endswith('.pdf'):
             import pdfplumber
+            pages = []
             with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
                 for page in pdf.pages:
                     extracted = page.extract_text()
                     if extracted:
-                        text += extracted + '\n'
+                        pages.append(extracted)
+            text = '\n'.join(pages)
         elif filename.endswith('.docx'):
             from docx import Document
             doc = Document(io.BytesIO(file_bytes))
-            for para in doc.paragraphs:
-                text += para.text + '\n'
+            text = '\n'.join(para.text for para in doc.paragraphs)
         else:
             text = file_bytes.decode('utf-8', errors='ignore')
-    except Exception as e:
-        return jsonify({'error': f'Failed to parse resume: {str(e)}'}), 400
+    except Exception:
+        return jsonify({'error': 'Failed to parse resume. Please ensure the file is a valid PDF, DOCX, or TXT.'}), 400
     if not text.strip():
         return jsonify({'error': 'Could not extract text from resume'}), 400
     resume_skills = extract_skills_from_text(text)
@@ -515,8 +515,9 @@ def analyze():
         for j in jobs:
             result += f"\u2022 {j['role']} \u2014 {j['openings']} openings \u2014 {j['salary']}\n"
         return jsonify({'result': result})
-    except Exception as e:
-        return jsonify({'result': f'Error: {str(e)}'}), 400
+    except Exception:
+        return jsonify({'result': 'An error occurred while processing the request.'}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    debug = os.environ.get('FLASK_DEBUG', '0') == '1'
+    app.run(debug=debug, host='127.0.0.1', port=5000)
