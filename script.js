@@ -263,7 +263,8 @@ function renderStartups(startups) {
   }
   startups.forEach(st => {
     const rolesHtml = (st.roles || []).map(r => `<span class="role-pill">${r}</span>`).join('');
-    const stars = '★'.repeat(Math.min(st.growth || 5, 10)) + '☆'.repeat(10 - Math.min(st.growth || 5, 10));
+    const filledStars = Math.min(st.growth || 5, 10);
+    const stars = '★'.repeat(filledStars) + '☆'.repeat(10 - filledStars);
     const card = document.createElement('div');
     card.className = 'startup-card';
     card.innerHTML = `
@@ -379,9 +380,7 @@ function displayResumeResults(data) {
     const card = createJobCard(job, true);
     // Add rank badge
     const rankEl = document.createElement('div');
-    rankEl.style.cssText = 'position:absolute;top:10px;right:10px;background:var(--primary);color:#fff;' +
-      'border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;' +
-      'font-size:.8rem;font-weight:800;z-index:1;';
+    rankEl.className = 'rank-badge';
     rankEl.textContent = '#' + (i + 1);
     card.style.position = 'relative';
     card.appendChild(rankEl);
