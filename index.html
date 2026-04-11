@@ -1,21 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Workforce Gap Analyzer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Workforce Gap Analyzer</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Workforce Gap Analyzer</h1>
-        <form id="analysis-form">
-            <label for="inputData">Enter workforce data:</label>
-            <textarea id="inputData" name="inputData" rows="4" required></textarea>
-            <button type="submit">Analyze</button>
-        </form>
-        <div id="result"></div>
+<div class="app-wrapper">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">&#127760;</span>
+        <div>
+          <h1>Workforce Gap Analyzer</h1>
+          <p class="tagline">Real-time Intelligence for Career &amp; Hiring Decisions</p>
+        </div>
+      </div>
+      <div class="city-selector">
+        <label for="citySelect">Select City</label>
+        <select id="citySelect">
+          <option value="">-- Choose a city --</option>
+          <option value="new york">&#127482;&#127480; New York</option>
+          <option value="bangalore">&#127470;&#127475; Bangalore</option>
+          <option value="london">&#127468;&#127463; London</option>
+          <option value="dubai">&#127462;&#127466; Dubai</option>
+          <option value="tokyo">&#127471;&#127477; Tokyo</option>
+          <option value="sydney">&#127462;&#127482; Sydney</option>
+          <option value="toronto">&#127464;&#127462; Toronto</option>
+          <option value="vizag">&#127470;&#127475; Vizag</option>
+        </select>
+        <button id="loadBtn" onclick="loadCity()">Load Data &#9658;</button>
+      </div>
     </div>
-    <script src="script.js"></script>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="high_demand">&#128293; High Demand</button>
+    <button class="tab-btn" data-tab="high_pay">&#128176; High Pay</button>
+    <button class="tab-btn" data-tab="best">&#11088; Best Jobs</button>
+    <button class="tab-btn" data-tab="risky">&#9888; Risky</button>
+    <button class="tab-btn" data-tab="emergency">&#128680; Emergency</button>
+    <button class="tab-btn" data-tab="new">&#127381; New Jobs</button>
+    <button class="tab-btn" data-tab="companies">&#127970; Companies</button>
+    <button class="tab-btn" data-tab="startups">&#128640; Startups</button>
+    <button class="tab-btn" data-tab="officers">&#129333; Officers</button>
+    <button class="tab-btn" data-tab="resume">&#128196; Resume AI</button>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- SEARCH BAR (shown for job tabs) -->
+    <div class="search-bar" id="searchBar">
+      <input type="text" id="searchInput" placeholder="&#128269; Search jobs, skills, companies..." oninput="filterCards()">
+      <span class="results-count" id="resultsCount"></span>
+    </div>
+
+    <!-- PANELS -->
+    <div id="panel-high_demand" class="panel active">
+      <div class="panel-header"><span class="panel-icon">&#128293;</span><div><h2>High Demand Jobs</h2><p>Roles with 200+ openings &mdash; hire immediately</p></div></div>
+      <div class="cards-grid" id="cards-high_demand"></div>
+    </div>
+
+    <div id="panel-high_pay" class="panel">
+      <div class="panel-header"><span class="panel-icon">&#128176;</span><div><h2>High Pay Jobs</h2><p>Top salary ranges in the market</p></div></div>
+      <div class="cards-grid" id="cards-high_pay"></div>
+    </div>
+
+    <div id="panel-best" class="panel">
+      <div class="panel-header"><span class="panel-icon">&#11088;</span><div><h2>Best Jobs</h2><p>Highest overall score: salary + demand + growth</p></div></div>
+      <div class="cards-grid" id="cards-best"></div>
+    </div>
+
+    <div id="panel-risky" class="panel">
+      <div class="panel-header warn-header"><span class="panel-icon">&#9888;</span><div><h2>Risky Jobs</h2><p>Low demand, declining sectors &mdash; plan carefully</p></div></div>
+      <div class="cards-grid" id="cards-risky"></div>
+    </div>
+
+    <div id="panel-emergency" class="panel">
+      <div class="panel-header danger-header"><span class="panel-icon">&#128680;</span><div><h2>Emergency Jobs</h2><p>Critical shortages &mdash; urgent hiring needed</p></div></div>
+      <div class="cards-grid" id="cards-emergency"></div>
+    </div>
+
+    <div id="panel-new" class="panel">
+      <div class="panel-header"><span class="panel-icon">&#127381;</span><div><h2>New Jobs</h2><p>Recently opened positions &mdash; apply first</p></div></div>
+      <div class="cards-grid" id="cards-new"></div>
+    </div>
+
+    <div id="panel-companies" class="panel">
+      <div class="panel-header"><span class="panel-icon">&#127970;</span><div><h2>Top Companies</h2><p>Best employers with open positions</p></div></div>
+      <div class="cards-grid" id="cards-companies"></div>
+    </div>
+
+    <div id="panel-startups" class="panel">
+      <div class="panel-header"><span class="panel-icon">&#128640;</span><div><h2>Startups Hiring</h2><p>High growth, equity &amp; exciting roles</p></div></div>
+      <div class="cards-grid" id="cards-startups"></div>
+    </div>
+
+    <div id="panel-officers" class="panel">
+      <div class="panel-header"><span class="panel-icon">&#129333;</span><div><h2>Placement Officers</h2><p>Expert recruiters to fast-track your career</p></div></div>
+      <div class="cards-grid" id="cards-officers"></div>
+    </div>
+
+    <!-- RESUME PANEL -->
+    <div id="panel-resume" class="panel">
+      <div class="panel-header"><span class="panel-icon">&#128196;</span><div><h2>Resume AI &mdash; Job Recommender</h2><p>Upload your CV and get personalized job matches with scores</p></div></div>
+
+      <div class="resume-section">
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="resumeFile" accept=".pdf,.docx,.txt" hidden>
+          <div class="upload-content" onclick="document.getElementById('resumeFile').click()">
+            <div class="upload-icon">&#128196;</div>
+            <h3>Drag &amp; Drop your Resume</h3>
+            <p>or click to browse &mdash; PDF, DOCX, TXT supported</p>
+            <div class="file-info" id="fileInfo"></div>
+          </div>
+        </div>
+
+        <div class="resume-city-row">
+          <label>Select City for Matching:</label>
+          <select id="resumeCity">
+            <option value="">-- Choose city --</option>
+            <option value="new york">New York</option>
+            <option value="bangalore">Bangalore</option>
+            <option value="london">London</option>
+            <option value="dubai">Dubai</option>
+            <option value="tokyo">Tokyo</option>
+            <option value="sydney">Sydney</option>
+            <option value="toronto">Toronto</option>
+            <option value="vizag">Vizag</option>
+          </select>
+          <button id="analyzeResumeBtn" onclick="analyzeResume()">&#129302; Analyze &amp; Match</button>
+        </div>
+
+        <div id="resumeLoading" class="loading-state hidden">
+          <div class="spinner"></div>
+          <p>Analyzing your resume and matching jobs...</p>
+        </div>
+
+        <div id="resumeResults" class="resume-results hidden">
+          <div class="skill-summary" id="skillSummary"></div>
+          <h3 class="recs-title">&#127942; Top Recommended Jobs</h3>
+          <div class="cards-grid" id="resumeRecommendations"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div id="emptyState" class="empty-state hidden">
+      <div class="empty-icon">&#128678;</div>
+      <h3>No jobs found for this filter</h3>
+      <p>Try a different category or select another city</p>
+    </div>
+
+    <!-- WELCOME STATE -->
+    <div id="welcomeState" class="welcome-state">
+      <div class="welcome-inner">
+        <div class="welcome-icon">&#127760;</div>
+        <h2>Welcome to Workforce Gap Analyzer</h2>
+        <p>Select a city above and click <strong>Load Data</strong> to explore job opportunities, companies, startups, and get personalized AI-powered recommendations.</p>
+        <div class="city-pills">
+          <span class="pill" onclick="quickLoad('new york')">&#127482;&#127480; New York</span>
+          <span class="pill" onclick="quickLoad('bangalore')">&#127470;&#127475; Bangalore</span>
+          <span class="pill" onclick="quickLoad('london')">&#127468;&#127463; London</span>
+          <span class="pill" onclick="quickLoad('dubai')">&#127462;&#127466; Dubai</span>
+          <span class="pill" onclick="quickLoad('tokyo')">&#127471;&#127477; Tokyo</span>
+          <span class="pill" onclick="quickLoad('sydney')">&#127462;&#127482; Sydney</span>
+          <span class="pill" onclick="quickLoad('toronto')">&#127464;&#127462; Toronto</span>
+          <span class="pill" onclick="quickLoad('vizag')">&#127470;&#127475; Vizag</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOADING -->
+    <div id="globalLoading" class="loading-state hidden">
+      <div class="spinner"></div>
+      <p>Loading workforce data...</p>
+    </div>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
