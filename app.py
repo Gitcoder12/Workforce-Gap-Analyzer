@@ -519,5 +519,10 @@ def analyze():
         return jsonify({'result': 'An error occurred while processing the request.'}), 400
 
 if __name__ == '__main__':
+    import threading
+    import webbrowser
     debug = os.environ.get('FLASK_DEBUG', '0') == '1'
-    app.run(debug=debug, host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    if not debug:
+        threading.Timer(1.5, lambda: webbrowser.open(f'http://localhost:{port}')).start()
+    app.run(debug=debug, host='0.0.0.0', port=port)
