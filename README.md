@@ -85,14 +85,42 @@ This project can be extended into research focusing on:
 
 ---
 
-## Installation
+## Deployment (Render.com — free hosting)
 
-```bash id="2hcrk6"
-git clone https://github.com/your-username/workforce-gap-analyzer.git
-cd workforce-gap-analyzer
+1. Fork this repository on GitHub.
+2. Go to [https://render.com](https://render.com) and sign in with GitHub.
+3. Click **New → Web Service** and connect your forked repository.
+4. Render will auto-detect the `render.yaml` configuration.
+5. Click **Deploy** — your app will be live at a public URL within minutes.
+
+---
+
+## Local Installation
+
+```bash
+git clone https://github.com/Gitcoder12/Workforce-Gap-Analyzer.git
+cd Workforce-Gap-Analyzer
 ```
 
-Open `index.html` in your browser.
+Install the required Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the Flask server:
+
+```bash
+python app.py
+```
+
+Then open your browser and go to:
+
+```
+http://localhost:5000
+```
+
+> **Note:** Do **not** open `index.html` directly in your browser. The app requires the Flask server to be running because all job data and the Resume AI feature are served through Python API endpoints.
 
 ---
 
