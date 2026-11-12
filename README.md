@@ -1,135 +1,46 @@
 # Workforce Gap Analyzer
 
-A web-based system that identifies workforce shortages across different regions by analyzing job demand and availability. The platform helps users discover high-opportunity professions based on local workforce gaps.
+**A web prototype for exploring job-demand and skills data by location.**
 
----
+[![License](https://img.shields.io/badge/license-see%20LICENSE-lightgrey)](LICENSE)
 
-## Overview
-
-Workforce Gap Analyzer focuses on detecting areas where specific jobs are lacking. By comparing demand for services with available workforce data, the system highlights professions that are in shortage within a region.
-
-This enables users to identify opportunities and make informed career or business decisions.
-
----
+Workforce Gap Analyzer is a Flask application that presents job-opportunity and skills information. The current implementation uses bundled example data and includes resume-document parsing dependencies for its analysis workflow.
 
 ## Features
 
-* Search by location
-* Identify job shortages in a region
-* View high-demand professions
-* Opportunity level classification (High / Medium / Low)
-* Simple and intuitive interface
-
----
-
-## How It Works
-
-1. User enters a location
-2. The system analyzes job demand and workforce availability
-3. Outputs:
-
-   * Jobs with shortages
-   * Opportunity levels
-   * Suggested high-demand professions
-
----
-
-## Example
-
-Input:
-Hyderabad
-
-Output:
-
-* High Demand:
-
-  * Electricians
-  * Plumbers
-  * Gardeners
-
-* Medium Demand:
-
-  * Delivery workers
-
-* Low Demand:
-
-  * Software engineers
-
----
+- Location-based browsing of the bundled job dataset.
+- Role, skills, salary-range, and opportunity indicators.
+- Resume-file parsing support for PDF and DOCX inputs.
+- Flask routes for serving the interface and processing requests.
 
 ## Tech Stack
 
-* Frontend: HTML, CSS, JavaScript
-* Backend (planned): Node.js / Python
-* Data Source (planned): Public datasets / APIs
+Python · Flask · Gunicorn · pdfplumber · python-docx · HTML · CSS · JavaScript
 
----
-
-## Future Enhancements
-
-* Real-time job data integration
-* Map-based visualization
-* Predictive demand analysis
-* User-specific recommendations
-* Data-driven dashboards
-
----
-
-## Research Potential
-
-This project can be extended into research focusing on:
-
-* Labor market demand-supply analysis
-* Workforce shortage prediction models
-* Regional employment optimization
-
----
-
-## Deployment (Render.com — free hosting)
-
-1. Fork this repository on GitHub.
-2. Go to [https://render.com](https://render.com) and sign in with GitHub.
-3. Click **New → Web Service** and connect your forked repository.
-4. Render will auto-detect the `render.yaml` configuration.
-5. Click **Deploy** — your app will be live at a public URL within minutes.
-
----
-
-## Local Installation
+## Quick Start
 
 ```bash
 git clone https://github.com/Gitcoder12/Workforce-Gap-Analyzer.git
 cd Workforce-Gap-Analyzer
-```
 
-Install the required Python dependencies:
+python -m venv .venv
+# Windows: .venv\\Scripts\\activate
+# macOS / Linux: source .venv/bin/activate
 
-```bash
 pip install -r requirements.txt
-```
-
-Start the Flask server:
-
-```bash
 python app.py
 ```
 
-Then open your browser and go to:
+Open `http://localhost:5000`.
 
-```
-http://localhost:5000
-```
+## Deployment
 
-> **Note:** Do **not** open `index.html` directly in your browser. The app requires the Flask server to be running because all job data and the Resume AI feature are served through Python API endpoints.
+A Render service definition is included in `render.yaml`. It installs `requirements.txt` and starts the Flask app with Gunicorn.
 
----
+## Scope and Limitations
 
-## Author
-
-Dharavath Satvik
-
----
+The current job listings are bundled sample data, not a live feed of vacancies or a statistically representative labor-market dataset. Salary and demand labels should not be used as current employment forecasts. Resume parsing is not a hiring decision or a substitute for human review.
 
 ## License
 
-MIT License
+See [LICENSE](LICENSE).
