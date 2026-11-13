@@ -1,70 +1,148 @@
 # Workforce Gap Analyzer
 
-**A web prototype for exploring job-demand and skills data by location.**
+A web-based system that identifies workforce shortages across different regions by analyzing job demand and availability. The platform helps users discover high-opportunity professions based on local workforce gaps.
 
-[![License](https://img.shields.io/badge/license-see%20LICENSE-lightgrey)](LICENSE)
+---
 
-Workforce Gap Analyzer is a Flask application that presents job-opportunity and skills information. The current implementation uses bundled example data and includes resume-document parsing dependencies for its analysis workflow.
+## Overview
+
+Workforce Gap Analyzer focuses on detecting areas where specific jobs are lacking. By comparing demand for services with available workforce data, the system highlights professions that are in shortage within a region.
+
+This enables users to identify opportunities and make informed career or business decisions.
+
+---
 
 ## Features
 
-- Location-based browsing of the bundled job dataset.
-- Role, skills, salary-range, and opportunity indicators.
-- Resume-file parsing support for PDF and DOCX inputs.
-- Flask routes for serving the interface and processing requests.
+* Search by location
+* Identify job shortages in a region
+* View high-demand professions
+* Opportunity level classification (High / Medium / Low)
+* Simple and intuitive interface
+
+---
+
+## How It Works
+
+1. User enters a location
+2. The system analyzes job demand and workforce availability
+3. Outputs:
+
+   * Jobs with shortages
+   * Opportunity levels
+   * Suggested high-demand professions
+
+---
+
+## Example
+
+Input:
+Hyderabad
+
+Output:
+
+* High Demand:
+
+  * Electricians
+  * Plumbers
+  * Gardeners
+
+* Medium Demand:
+
+  * Delivery workers
+
+* Low Demand:
+
+  * Software engineers
+
+---
 
 ## Tech Stack
 
-Python · Flask · Gunicorn · pdfplumber · python-docx · HTML · CSS · JavaScript
+* Frontend: HTML, CSS, JavaScript
+* Backend (planned): Node.js / Python
+* Data Source (planned): Public datasets / APIs
 
-## Quick Start
+---
+
+## Future Enhancements
+
+* Real-time job data integration
+* Map-based visualization
+* Predictive demand analysis
+* User-specific recommendations
+* Data-driven dashboards
+
+---
+
+## Research Potential
+
+This project can be extended into research focusing on:
+
+* Labor market demand-supply analysis
+* Workforce shortage prediction models
+* Regional employment optimization
+
+---
+
+## Deployment (Render.com — free hosting)
+
+1. Fork this repository on GitHub.
+2. Go to [https://render.com](https://render.com) and sign in with GitHub.
+3. Click **New → Web Service** and connect your forked repository.
+4. Render will auto-detect the `render.yaml` configuration.
+5. Click **Deploy** — your app will be live at a public URL within minutes.
+
+---
+
+## Local Installation
 
 ```bash
 git clone https://github.com/Gitcoder12/Workforce-Gap-Analyzer.git
 cd Workforce-Gap-Analyzer
+```
 
-python -m venv .venv
-# Windows: .venv\\Scripts\\activate
-# macOS / Linux: source .venv/bin/activate
+Install the required Python dependencies:
 
+```bash
 pip install -r requirements.txt
+```
+
+Start the Flask server:
+
+```bash
 python app.py
 ```
 
-Open `http://localhost:5000`.
+Then open your browser and go to:
 
-## Deployment
+```
+http://localhost:5000
+```
 
-A Render service definition is included in `render.yaml`. It installs `requirements.txt` and starts the Flask app with Gunicorn.
-
-## Scope and Limitations
-
-The current job listings are bundled sample data, not a live feed of vacancies or a statistically representative labor-market dataset. Salary and demand labels should not be used as current employment forecasts. Resume parsing is not a hiring decision or a substitute for human review.
-
-## License
-
-See [LICENSE](LICENSE).
+> **Note:** Do **not** open `index.html` directly in your browser. The app requires the Flask server to be running because all job data and the Resume AI feature are served through Python API endpoints.
 
 ---
 
-## Project handbook
+## Author
 
-- [Activity log](ACTIVITY_LOG.md)
-- [Feature upgrade plan](FEATURE_UPGRADE_PLAN.md)
-- [Company and team fit](COMPANY_FIT.md)
-- [Beginner and technical README draft](README_ADDENDUM_DRAFT.md)
-- [README quality checklist](README_QUALITY_CHECKLIST.md)
-- [Contributing](CONTRIBUTING.md)
-- [Agent instructions](AGENTS.md) · [Agent skills](SKILLS.md)
+Dharavath Satvik
 
-## Understanding the project
+---
 
-### In plain language
+## License
 
-A web prototype that compares example job opportunities with skill information and can parse a resume to explore possible skill gaps.
+MIT License
 
-### Technical and research view
 
-Flask application using bundled example job data and PDF/DOCX parsing dependencies. It is not a live labour-market feed or a validated hiring assessment. The existing audit opened issue #3 because the resume upload route reads all bytes without a configured size limit or robust format/content checks.
+---
 
-See [FEATURE_UPGRADE_PLAN.md](FEATURE_UPGRADE_PLAN.md), [ACTIVITY_LOG.md](ACTIVITY_LOG.md), [COMPANY_FIT.md](COMPANY_FIT.md) and [CONTRIBUTING.md](CONTRIBUTING.md) for technical depth and collaboration details.
+## AI-maintained project notes (secondary — 2026-11-13)
+
+This section supplements the maintainer-authored README above. The original text has been restored verbatim from Git-history baseline `c3d5042902e4eb62d1d7bac15543f46f686a919f`; this addendum does not replace or certify the original claims.
+
+- The source tree, runtime data and tests are the implementation source of truth. Roadmap items, draft PRs and AI-generated descriptions are not shipped features by themselves.
+- Preserve existing maintainer-provided data. Never replace real data with synthetic or placeholder records. Clearly label and isolate test fixtures.
+- Mark unverified sources, IDs, records, metrics and external claims as unknown/unverified instead of guessing.
+- Verify setup, execution, test commands and public claims against the exact current commit before using this project in a job, research or academic application.
+- See [MODEL_AUDIT_ROUTER.md](MODEL_AUDIT_ROUTER.md) for the independent model review and merge gate.
