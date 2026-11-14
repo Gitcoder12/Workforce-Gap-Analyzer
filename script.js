@@ -11,12 +11,12 @@ let currentTab = 'high_demand';
 
 // ── TAG CONFIG ────────────────────────────────────────────────
 const TAG_CONFIG = {
-  Fire:    { cls: 'badge-fire',  label: '🔥 High Demand' },
-  Money:   { cls: 'badge-money', label: '💰 High Pay' },
-  Star:    { cls: 'badge-star',  label: '⭐ Best Job' },
-  Warning: { cls: 'badge-warn',  label: '⚠️ Risky' },
-  Alarm:   { cls: 'badge-alarm', label: '🚨 Emergency' },
-  New:     { cls: 'badge-new',   label: '🆕 New' },
+  Fire:    { cls: 'badge-fire',  label: ' High Demand' },
+  Money:   { cls: 'badge-money', label: ' High Pay' },
+  Star:    { cls: 'badge-star',  label: ' Best Job' },
+  Warning: { cls: 'badge-warn',  label: ' Risky' },
+  Alarm:   { cls: 'badge-alarm', label: ' Emergency' },
+  New:     { cls: 'badge-new',   label: ' New' },
 };
 
 // ── TAB SWITCHING ─────────────────────────────────────────────
@@ -196,19 +196,19 @@ function createJobCard(job, showScores) {
     </div>
     <div class="job-card-body">
       <div class="job-stat">
-        <span class="stat-label">💼 Openings</span>
+        <span class="stat-label"> Openings</span>
         <span class="stat-value">${job.openings}</span>
       </div>
       <div class="job-stat">
-        <span class="stat-label">💰 Salary</span>
+        <span class="stat-label"> Salary</span>
         <span class="stat-value salary">${job.salary}</span>
       </div>
       <div class="job-stat">
-        <span class="stat-label">🎯 Experience</span>
+        <span class="stat-label"> Experience</span>
         <span class="stat-value">${job.experience || 'N/A'}</span>
       </div>
       <div class="job-stat">
-        <span class="stat-label">🕐 Posted</span>
+        <span class="stat-label"> Posted</span>
         <span class="stat-value">${posted}</span>
       </div>
       <div class="skills-row">${skillsHtml}</div>
@@ -241,14 +241,14 @@ function renderCompanies(companies) {
     card.className = 'company-card';
     card.innerHTML = `
       <div class="company-name-row">
-        <span class="company-name">🏢 ${co.name}</span>
-        <span class="company-rating">⭐ ${co.rating}</span>
+        <span class="company-name"> ${co.name}</span>
+        <span class="company-rating"> ${co.rating}</span>
       </div>
-      <div class="company-openings">💼 ${co.openings} Open Positions</div>
-      <div class="company-salary">💰 ${co.salary}</div>
+      <div class="company-openings"> ${co.openings} Open Positions</div>
+      <div class="company-salary"> ${co.salary}</div>
       <div class="skills-row">${skillsHtml}</div>
-      <div class="company-benefits">🎁 ${co.benefits}</div>
-      <div><span class="growth-tag ${growthClass}">📈 ${co.growth} Growth</span></div>`;
+      <div class="company-benefits"> ${co.benefits}</div>
+      <div><span class="growth-tag ${growthClass}"> ${co.growth} Growth</span></div>`;
     container.appendChild(card);
   });
 }
@@ -269,12 +269,12 @@ function renderStartups(startups) {
     card.className = 'startup-card';
     card.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-        <span class="startup-name">🚀 ${st.name}</span>
+        <span class="startup-name"> ${st.name}</span>
         <span class="stage-badge">${st.stage}</span>
       </div>
       <div class="startup-desc">${st.description}</div>
-      <div class="startup-salary">💰 ${st.salary}</div>
-      <div class="startup-equity">📊 Equity: ${st.equity}</div>
+      <div class="startup-salary"> ${st.salary}</div>
+      <div class="startup-equity"> Equity: ${st.equity}</div>
       <div class="roles-row">${rolesHtml}</div>
       <div class="growth-stars" title="Growth: ${st.growth}/10">${stars}</div>`;
     container.appendChild(card);
@@ -294,14 +294,14 @@ function renderOfficers(officers) {
     card.className = 'officer-card';
     card.innerHTML = `
       <div class="officer-name-row">
-        <span class="officer-name">👔 ${off.name}</span>
+        <span class="officer-name"> ${off.name}</span>
         <span class="success-badge">${off.success_rate}% success</span>
       </div>
-      <div class="officer-spec">🎯 ${off.specialization}</div>
-      <div class="officer-info">📞 <a href="tel:${off.phone}">${off.phone}</a></div>
-      <div class="officer-info">📧 <a href="mailto:${off.email}">${off.email}</a></div>
-      <div class="officer-info">🏅 ${off.experience} yrs experience</div>
-      <div class="placed-count">✅ Placed <strong>${off.placed.toLocaleString()}</strong> candidates</div>`;
+      <div class="officer-spec"> ${off.specialization}</div>
+      <div class="officer-info"> <a href="tel:${off.phone}">${off.phone}</a></div>
+      <div class="officer-info"> <a href="mailto:${off.email}">${off.email}</a></div>
+      <div class="officer-info"> ${off.experience} yrs experience</div>
+      <div class="placed-count"> Placed <strong>${off.placed.toLocaleString()}</strong> candidates</div>`;
     container.appendChild(card);
   });
 }
@@ -328,7 +328,7 @@ resumeFile.addEventListener('change', () => {
 });
 
 function showFileName(name) {
-  document.getElementById('fileInfo').textContent = '📎 ' + name + ' selected';
+  document.getElementById('fileInfo').textContent = ' ' + name + ' selected';
 }
 
 function analyzeResume() {
@@ -368,9 +368,9 @@ function displayResumeResults(data) {
   ).join('') || '<span style="color:var(--text-muted)">No skills detected</span>';
 
   document.getElementById('skillSummary').innerHTML = `
-    <h3>📋 Resume Analysis</h3>
+    <h3> Resume Analysis</h3>
     <div class="extracted-skills">${skillsHtml}</div>
-    <p class="years-exp">⏳ Experience detected: <strong>${data.experience_years || 0} years</strong> &nbsp;|&nbsp;
+    <p class="years-exp"> Experience detected: <strong>${data.experience_years || 0} years</strong> &nbsp;|&nbsp;
       Jobs analyzed: <strong>${data.total_jobs_analyzed}</strong></p>`;
 
   // Recommendations
