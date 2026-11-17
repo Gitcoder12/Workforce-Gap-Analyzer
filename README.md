@@ -146,3 +146,21 @@ This section supplements the maintainer-authored README above. The original text
 - Mark unverified sources, IDs, records, metrics and external claims as unknown/unverified instead of guessing.
 - Verify setup, execution, test commands and public claims against the exact current commit before using this project in a job, research or academic application.
 - See [MODEL_AUDIT_ROUTER.md](MODEL_AUDIT_ROUTER.md) for the independent model review and merge gate.
+
+---
+
+## Engineering Audit & Handover — 2026-11-17
+
+**Review scope:** default branch `main`; static inspection of `app.py`. Runtime tests were not executed.
+
+### Confirmed findings
+- `JOBS_DATA` is an in-code dataset in `app.py`, with sample roles, salary bands, opening counts, growth scores, and generic company labels such as `Various` / `Various Tech`.
+- The inspected data is not evidence of live job-market retrieval. Do not present its openings, salaries, growth scores, or rankings as current market facts.
+- `KNOWN_SKILLS` is also a static list; it is not a live skills taxonomy.
+
+### Next actions
+1. Clearly label the current records as illustrative/demo data in the UI and API.
+2. Add source, retrieval date, geography, currency, and provenance fields before presenting real market metrics.
+3. Add tests for location lookup, empty results, malformed inputs, and the resume/skills analysis routes.
+
+**Verification status:** static source inspection only; API behavior, deployment, and tests remain unverified.
