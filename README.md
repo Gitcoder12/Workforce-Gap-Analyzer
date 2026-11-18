@@ -164,3 +164,10 @@ This section supplements the maintainer-authored README above. The original text
 3. Add tests for location lookup, empty results, malformed inputs, and the resume/skills analysis routes.
 
 **Verification status:** static source inspection only; API behavior, deployment, and tests remain unverified.
+
+---
+
+## Examples Used
+- Comparing electrician demand and availability in Hyderabad
+- Identifying regional shortages of healthcare workers
+- Mapping skills demand against available candidates
