@@ -164,3 +164,26 @@ This section supplements the maintainer-authored README above. The original text
 3. Add tests for location lookup, empty results, malformed inputs, and the resume/skills analysis routes.
 
 **Verification status:** static source inspection only; API behavior, deployment, and tests remain unverified.
+
+
+---
+
+## Branch Activity & Development History
+
+**Audit date:** 2026-11-18 · **Comparison base:** `main`
+
+| Branch | Difference from `main` | Observed work / changed paths |
+|---|---:|---|
+| `chore/remove-emoji-glyphs-2026-11-13` | Comparison unavailable | GitHub comparison service disconnected; retry required |
+| `copilot/complete-workforce-analyzer` | 0 ahead / 7 behind | No unique commits relative to current `main`; branch is behind |
+| `copilot/is-the-code-over` | 0 / 16 | No unique commits relative to current `main`; branch is behind |
+| `docs/portfolio-operating-kit-2026-11-13` | 4 / 3 | Activity log, agent guidance, company-fit notes, feature plan, README support docs and skills |
+| `docs/project-status-audit20261116` | Comparison unavailable | GitHub returned 404 for the comparison; recheck branch existence |
+
+### Open pull requests observed during this audit
+
+- [PR #5 — project status snapshot](https://github.com/Gitcoder12/Workforce-Gap-Analyzer/pull/5)
+- [PR #4 — project handbook and contributor workflow](https://github.com/Gitcoder12/Workforce-Gap-Analyzer/pull/4)
+- [PR #2 — remove emoji glyphs](https://github.com/Gitcoder12/Workforce-Gap-Analyzer/pull/2)
+
+**Verification boundary:** Branch comparisons are metadata only. Recheck unavailable comparisons and inspect PR head/base plus CI before merging. No branches have been merged or deleted by this documentation update.
