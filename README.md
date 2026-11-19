@@ -171,3 +171,27 @@ This section supplements the maintainer-authored README above. The original text
 - Comparing electrician demand and availability in Hyderabad
 - Identifying regional shortages of healthcare workers
 - Mapping skills demand against available candidates
+
+
+---
+
+## Comparison with Existing Projects and Data Sources
+
+Workforce Gap Analyzer is documented as a regional demand-versus-availability concept for identifying occupations with possible shortages. Its closest comparators are labour-market data systems and skills-taxonomy projects rather than one identical open-source application.
+
+| Project / resource | Established focus | Relationship to Workforce Gap Analyzer |
+|---|---|---|
+| [ESCO skills map](https://github.com/LigiaAdam/esco-skills-map) | Maps skills and occupations using the European Skills, Competences, Qualifications and Occupations classification | A skills/occupation taxonomy reference; Workforce Gap Analyzer's intended focus is regional demand-versus-supply analysis. |
+| [ESCO CSV-to-Graph](https://github.com/Y4SSERk/ESCO-csv2Graph) | Converts ESCO classification data into graph form | A data-modelling reference for relationships among occupations and skills, not a live labour-market shortage detector. |
+| [O*NET](https://www.onetonline.org/) | US occupational descriptions, skills, tasks and labour-market information | A major occupational-information reference; its US coverage is not a substitute for local Indian demand/supply data. |
+
+### Where Workforce Gap Analyzer is different
+- **Regional framing:** the product is intended to answer which occupations appear underserved in a selected location.
+- **Demand-versus-availability model:** its central concept compares workforce supply with demand, rather than only listing job titles or skills.
+- **Decision-oriented output:** the proposed high/medium/low opportunity bands aim to make the result understandable to job seekers and planners.
+
+### Where established projects are stronger
+ESCO and O*NET provide structured occupational taxonomies and richer metadata. The current README describes planned public data/API integration and an early implementation; it does not establish that its sample job counts, salary bands or opportunity labels represent current market conditions.
+
+### Evidence and limitations
+A defensible shortage estimate needs dated vacancies, deduplication, occupation mapping, geography, labour-force supply, source coverage and a published calculation method. Label sample records as illustrative. Do not equate job-posting counts with actual vacancies or infer a shortage from demand alone. This comparison is a positioning note, not a validation of the current estimates.
